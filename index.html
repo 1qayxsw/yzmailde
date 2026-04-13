@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Security Gateway | YZ-Systems Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Professional System Initialization (Splash) -->
+    <div id="boot-sequence" class="initializer-overlay">
+        <div id="terminal-content" class="init-log font-mono"></div>
+    </div>
+
+    <!-- Main Enterprise Portal -->
+    <main id="app-content" class="portal-container hidden">
+        
+        <!-- Top Legal Banner -->
+        <header class="legal-banner">
+            <i data-lucide="shield-alert" class="w-4 h-4" style="color: #fbbf24;"></i>
+            <p class="text-xs font-mono uppercase tracking-wide opacity-80">
+                RESTRICTED ACCESS: Continuous monitoring active. Unauthorized attempts are logged and reported for administrative review.
+            </p>
+        </header>
+
+        <!-- Main Branding & Login Layout -->
+        <div id="portal-main-view" class="main-portal">
+            
+            <section class="hero-branding">
+                <!-- Restored Custom YZ-Systems SVG Monogram -->
+                <div class="shield-logo" style="background: linear-gradient(135deg, #1e293b, #0f172a); border-color: rgba(59, 130, 246, 0.5);">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 10L18 22V32M30 10L18 22M10 32H30L10 32Z" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 32L30 10" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                    </svg>
+                </div>
+                <h1>YZ-Systems | Access Gateway</h1>
+                <p class="text-sm text-secondary" style="margin-top: 0.5rem; max-width: 440px;">
+                    Infrastructure Cluster Node: <b>AMS-Alpha</b>. <br>
+                    Authenticate via Corporate Identity Provider to access production resources and internal network nodes.
+                </p>
+                
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <span class="text-xs uppercase font-mono text-muted">Status</span>
+                        <div style="display:flex; align-items:center; gap: 8px;">
+                            <span class="status-badge" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;">ONLINE</span>
+                            <span class="text-sm font-bold">FIPS 140-2 Validated</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; display: flex; gap: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 8px; opacity: 0.5;">
+                        <i data-lucide="lock" class="w-4 h-4"></i>
+                        <span class="text-xs uppercase font-bold">Zero Trust Architecture (ZTA)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; opacity: 0.5;">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        <span class="text-xs uppercase font-bold">ISO-27001 / SOC2 Compliant</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Refined Identity Provider Login -->
+            <section id="login-section" class="login-card">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 2rem;">
+                    <h2 class="text-lg">Member Sign-In</h2>
+                    <span class="font-mono opacity-30" style="font-size: 10px;">IDP_SEQ_v2</span>
+                </div>
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label class="label">Corporate Email / ID</label>
+                        <input type="text" id="user-id" class="input-field" placeholder="employee@yz-systems.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="label">MFA Key / Password</label>
+                        <input type="text" id="user-pass" class="input-field password-mask" placeholder="********" required>
+                        <p class="text-muted font-mono mt-2 opacity-50" style="font-size: 9px;">Support: Hardware Key (FIDO2) or TOTP Token</p>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Authenticate Identity</button>
+                    <div style="text-align:center; margin: 1.5rem 0; position:relative;">
+                        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.05);">
+                        <span style="position:absolute; top:-10px; left:50%; transform:translateX(-50%); background:var(--bg-secondary); padding: 0 10px; font-size:9px; color:var(--text-secondary);">OR</span>
+                    </div>
+                    <button type="button" class="btn btn-secondary" style="margin-top:0;">Login via Global SSO</button>
+                </form>
+                
+                <div id="auth-error" class="hidden" style="margin-top: 2rem; padding: 1rem; border: 1px solid var(--error-red); border-radius: 6px; background: rgba(239, 68, 68, 0.05);">
+                    <p class="text-xs font-bold" style="color: var(--error-red); text-transform: uppercase;">Identity Not Verified</p>
+                    <p class="text-xs opacity-60 mt-1">Credentials rejected by the authenticator node. Audit log update triggered.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- VPN Wall Error View (403 Forbidden) -->
+        <div id="view-error" class="main-portal hidden">
+            <div class="error-container" style="border: 1px solid #ff4444; background-color: rgba(255, 68, 68, 0.05); padding: 30px; border-radius: 8px; text-align: left; grid-column: span 2;">
+                <div style="color: #ff4444; font-family: monospace; font-size: 14px; margin-bottom: 10px;">
+                    [ERROR EXCEPTION] // HTTP 403: FORBIDDEN
+                </div>
+                
+                <h2 style="color: #ffffff; margin-top: 0; font-size: 24px;">Access Denied</h2>
+                
+                <p style="color: #cccccc; font-size: 15px; line-height: 1.6;">
+                    The <strong>YZ-Systems Security Portal</strong> is restricted to internal corporate networks and authorized Intranet nodes only. External routing to this resource has been blocked by the firewall policy.
+                </p>
+
+                <div style="background-color: #1a1a1a; padding: 15px; border-radius: 4px; margin-top: 20px; font-family: monospace; font-size: 13px; color: #888;">
+                    <div style="margin-bottom: 8px;"><span style="color: #aaa;">Diagnostics:</span> Invalid origin network topology.</div>
+                    <div style="margin-bottom: 8px;"><span style="color: #aaa;">Action Required:</span> Ensure your VPN client is actively connected to a recognized corporate node before attempting access.</div>
+                    <div style="color: #ff4444; margin-top: 15px;">
+                        > WARNING: Unauthorized attempt logged. Incident ID: SEC-8901-AMS.
+                    </div>
+                </div>
+                
+                <button onclick="router.navigate('home')" class="btn btn-secondary" style="margin-top: 25px; width: auto; padding: 10px 20px;">
+                    Return to Gateway Sign-In
+                </button>
+            </div>
+        </div>
+
+        <!-- Corporate Footer -->
+        <footer class="portal-footer">
+            <div class="footer-top">
+                <div class="footer-links">
+                    <a href="#" onclick="toggleModal('privacy-modal', true)">Privacy Policy</a>
+                    <a href="#" onclick="toggleModal('tos-modal', true)">Terms of Service</a>
+                    <a href="#" onclick="router.navigate('error')">Security Portal</a>
+                    <a href="#" onclick="toggleModal('diag-modal', true)">Service Health</a>
+                </div>
+                <div class="footer-copy text-xs text-muted">
+                    &copy; 2026 YZ-Systems Corp. All rights reserved.
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="text-xs font-mono text-muted" style="opacity: 0.5;">
+                    Gateway Node: <span class="font-bold">v4.12.3-release.41</span> // 
+                    Region Cluster: <span class="font-bold">AMS_01-ALPHA</span> // 
+                    Interface IP: <span id="display-ip" class="font-bold">95.89.46.41</span>
+                </p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Professional Service Health Modal -->
+    <div id="diag-modal" class="modal-overlay hidden">
+        <div class="modal-backdrop" onclick="toggleModal('diag-modal', false)" style="position: absolute; inset:0;"></div>
+        <div class="modal-content">
+            <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+                <h3 class="text-sm font-bold uppercase tracking-wide">System Diagnostic Report</h3>
+                <button onclick="toggleModal('diag-modal', false)" style="background:none; border:none; color:var(--text-secondary); cursor:pointer;">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div style="padding: 2rem;">
+                <div id="diag-stats" style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <!-- Static technical stats -->
+                </div>
+                <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 6px;">
+                    <p class="text-xs text-muted mb-2 font-mono uppercase">Node Latency Metrics</p>
+                    <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;">
+                        <div style="height: 100%; width: 45%; background: var(--accent-blue);"></div>
+                    </div>
+                </div>
+                <button onclick="toggleModal('diag-modal', false)" class="btn btn-primary mt-8">Close Diagnostics</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="tos-modal" class="modal-overlay hidden">
+        <div class="modal-backdrop" onclick="toggleModal('tos-modal', false)" style="position: absolute; inset:0;"></div>
+        <div class="modal-content">
+            <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+                <div style="display:flex; flex-direction:column;">
+                    <h3 class="text-sm font-bold uppercase tracking-wide">Enterprise Terms of Service</h3>
+                    <span style="font-size: 9px; color: var(--text-secondary);">Last Updated: Q1 2026 // Document Ref: YZ-TOS-99A</span>
+                </div>
+                <button onclick="toggleModal('tos-modal', false)" style="background:none; border:none; color:var(--text-secondary); cursor:pointer;">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div style="padding: 2rem; overflow-y: auto; max-height: 400px; text-align: left; font-size: 0.9em; color: #a0a0a0;">
+                <h4 style="color: var(--text-primary); margin: 1rem 0 0.5rem 0;">1. Acceptance of Enterprise Terms</h4>
+                <p>By authenticating, accessing, or otherwise utilizing the YZ-Systems Access Gateway ("The Infrastructure"), you acknowledge that you have read, understood, and agree to be bound by these binding corporate directives. Access is granted strictly on a least-privilege basis.</p>
+
+                <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">2. Acceptable Use and Restrictions</h4>
+                <p>The Infrastructure is provisioned exclusively for authorized operational duties. Users shall not: (a) attempt to bypass, modify, or disable any security protocols, including FIPS 140-2 validated cryptography; (b) conduct unauthorized network reconnaissance, penetration testing, or vulnerability scanning against YZ-Systems endpoints; (c) facilitate access for non-provisioned third-party entities.</p>
+
+                <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">3. Session Monitoring and Telemetry</h4>
+                <p>Notice of Consent: All traffic traversing the Access Gateway is subject to continuous deep-packet inspection, behavioral analytics, and session recording. YZ-Systems reserves the right to terminate any active tunnel session without prior notice if anomalous activity is detected by our Zero Trust Architecture (ZTA) automated systems.</p>
+
+                <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">4. Export Compliance</h4>
+                <p>The routing algorithms and encryption cipher suites utilized within Protocol v4.12.3 are subject to international export control laws. Users are strictly prohibited from accessing this gateway from embargoed regions or transmitting classified payloads outside designated geographic clusters.</p>
+
+                <p style="margin-top: 2rem;"><em>End of Document. Scroll to acknowledge.</em></p>
+                <button onclick="toggleModal('tos-modal', false)" class="btn btn-primary mt-8">Accept & Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="modal-overlay hidden">
+        <div class="modal-backdrop" onclick="toggleModal('privacy-modal', false)" style="position: absolute; inset:0;"></div>
+        <div class="modal-content">
+            <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+                <div style="display:flex; flex-direction:column;">
+                    <h3 class="text-sm font-bold uppercase tracking-wide">Corporate Privacy & Data Handling Policy</h3>
+                    <span style="font-size: 9px; color: var(--text-secondary);">Compliance: SOC2 / ISO-27001</span>
+                </div>
+                <button onclick="toggleModal('privacy-modal', false)" style="background:none; border:none; color:var(--text-secondary); cursor:pointer;">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div style="padding: 2rem; overflow-y: auto; max-height: 400px; text-align: left; font-size: 0.9em; color: #a0a0a0;">
+                <h4 style="color: var(--text-primary); margin: 1rem 0 0.5rem 0;">1. Data Collection Scope</h4>
+                <p>In accordance with internal security mandates, YZ-Systems collects specific diagnostic and authentication telemetry during your session. This includes, but is not limited to: Originating IP address, MAC address routing tables, hardware token identifiers (FID02 serials), and biometric authentication logs provided by your Identity Provider (IdP).</p>
+
+                <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">2. Data Retention and Immutable Logging</h4>
+                <p>All authentication events, successful or denied, are written to immutable ledger storage within the AMS Cluster. Logs are retained for a minimum of 36 months to comply with federal auditing requirements and forensic analysis protocols.</p>
+
+                <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">3. Employee Privacy Expectations</h4>
+                <p>This is a managed corporate environment. Users should have no expectation of personal privacy regarding communications or data transmitted through the YZ-Systems Access Gateway. Personal use of this infrastructure is a violation of the Acceptable Use Policy.</p>
+                
+                <button onclick="toggleModal('privacy-modal', false)" class="btn btn-primary mt-8">Acknowledge Policy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
+</body>
+</html>
