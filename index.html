@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enterprise Security Gateway | YZ-Systems Corp.</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -43,58 +43,75 @@
                     Authenticate via Corporate Identity Provider to access production resources and internal network nodes.
                 </p>
                 
-                <div class="tech-grid">
-                    <div class="tech-card">
-                        <span class="text-xs uppercase font-mono text-muted">Status</span>
-                        <div style="display:flex; align-items:center; gap: 8px;">
-                            <span class="status-badge" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;">ONLINE</span>
-                            <span class="text-sm font-bold">FIPS 140-2 Validated</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 3rem; display: flex; gap: 2rem;">
-                    <div style="display: flex; align-items: center; gap: 8px; opacity: 0.5;">
+                <div class="compliance-badges">
+                    <div class="compliance-badge">
                         <i data-lucide="lock" class="w-4 h-4"></i>
-                        <span class="text-xs uppercase font-bold">Zero Trust Architecture (ZTA)</span>
+                        <span class="text-xs uppercase font-semibold">Zero Trust Architecture (ZTA)</span>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 8px; opacity: 0.5;">
+                    <div class="compliance-badge">
                         <i data-lucide="shield-check" class="w-4 h-4"></i>
-                        <span class="text-xs uppercase font-bold">ISO-27001 / SOC2 Compliant</span>
+                        <span class="text-xs uppercase font-semibold">ISO-27001 / SOC2 Compliant</span>
                     </div>
                 </div>
             </section>
 
             <!-- Refined Identity Provider Login -->
-            <section id="login-section" class="login-card">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 2rem;">
-                    <h2 class="text-lg">Member Sign-In</h2>
-                    <span class="font-mono opacity-30" style="font-size: 10px;">IDP_SEQ_v2</span>
-                </div>
-                <form id="auth-form">
-                    <div class="form-group">
-                        <label class="label">Corporate Email / ID</label>
-                        <input type="text" id="user-id" class="input-field" placeholder="employee@yz-systems.com" required>
+            <div class="login-column">
+                <section id="login-section" class="login-card">
+                    <div class="login-header">
+                        <h2>Member Sign-In</h2>
+                        <span class="font-mono version-tag">IDP_SEQ_v2</span>
                     </div>
-                    <div class="form-group">
-                        <label class="label">MFA Key / Password</label>
-                        <input type="text" id="user-pass" class="input-field password-mask" placeholder="********" required>
-                        <p class="text-muted font-mono mt-2 opacity-50" style="font-size: 9px;">Support: Hardware Key (FIDO2) or TOTP Token</p>
-                    </div>
+                    <form id="auth-form">
+                        <div class="form-group">
+                            <label class="label">Corporate Email / ID</label>
+                            <input type="text" id="user-id" class="input-field" placeholder="employee@yz-systems.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="label">MFA Key / Password</label>
+                            <input type="text" id="user-pass" class="input-field password-mask" placeholder="********" required>
+                            <p class="text-muted font-mono hint-text">Support: Hardware Key (FIDO2) or TOTP Token</p>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Authenticate Identity</button>
+                        
+                        <div class="divider">
+                            <span>OR</span>
+                        </div>
+                        
+                        <button type="button" class="btn btn-secondary">Login via Global SSO</button>
+                    </form>
                     
-                    <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Authenticate Identity</button>
-                    <div style="text-align:center; margin: 1.5rem 0; position:relative;">
-                        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.05);">
-                        <span style="position:absolute; top:-10px; left:50%; transform:translateX(-50%); background:var(--bg-secondary); padding: 0 10px; font-size:9px; color:var(--text-secondary);">OR</span>
+                    <div id="auth-error" class="hidden auth-error-box">
+                        <p class="error-title">Identity Not Verified</p>
+                        <p class="error-text">Credentials rejected by the authenticator node. Audit log update triggered.</p>
                     </div>
-                    <button type="button" class="btn btn-secondary" style="margin-top:0;">Login via Global SSO</button>
-                </form>
+                </section>
                 
-                <div id="auth-error" class="hidden" style="margin-top: 2rem; padding: 1rem; border: 1px solid var(--error-red); border-radius: 6px; background: rgba(239, 68, 68, 0.05);">
-                    <p class="text-xs font-bold" style="color: var(--error-red); text-transform: uppercase;">Identity Not Verified</p>
-                    <p class="text-xs opacity-60 mt-1">Credentials rejected by the authenticator node. Audit log update triggered.</p>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-main">
+                            <span class="text-xs uppercase font-mono text-muted">Status</span>
+                            <span class="status-badge" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;">ONLINE</span>
+                        </div>
+                        <span class="text-sm font-medium">FIPS 140-2</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-main">
+                            <span class="text-xs uppercase font-mono text-muted">Encryption</span>
+                            <span class="status-badge" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">AES-256</span>
+                        </div>
+                        <span class="text-sm font-medium">TLS 1.3 Active</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-main">
+                            <span class="text-xs uppercase font-mono text-muted">Latency</span>
+                            <span class="status-badge" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;">12ms</span>
+                        </div>
+                        <span class="text-sm font-medium">AMS Cluster</span>
+                    </div>
                 </div>
-            </section>
+            </div>
         </div>
 
         <!-- VPN Wall Error View (403 Forbidden) -->
